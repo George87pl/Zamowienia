@@ -1,0 +1,35 @@
+﻿@model List<Zamowienie>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nazwa</th>
+                    <th>Data Złożenia</th>
+                    <th>Data Zakończenia</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var zamowienie in Model)
+                {
+                    <tr>
+                        <td>@zamowienie.ZamowienieID</td>
+                        <td>@zamowienie.Nazwa</td>
+                        <td>@zamowienie.DataZlozenia.ToString("dd MM yyyy")</td>
+                        <td>@zamowienie.DataZakonczenia</td>
+                        <td>
+                            <a class="btn btn-primary" asp-controller="" asp-action="Details" asp-route-id="@zamowienie.ZamowienieID">Szczegóły</a>
+                            <a class="btn btn-info" asp-controller="" asp-action="Update" asp-route-id="@zamowienie.ZamowienieID">Zmień</a>
+                            <a class="btn btn-danger" asp-controller="" asp-action="Delete" asp-route-id="@zamowienie.ZamowienieID">Usuń</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>

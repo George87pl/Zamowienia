@@ -1,0 +1,20 @@
+﻿@model Zamowienie
+@{
+    ViewData["Title"] = "Update";
+}
+
+<form class="mt-3" enctype="multipart/form-data" asp-controller="Home" asp-action="Update" method="post">
+    <div class="form-group row">
+        <div class="col-sm-5">
+            <input class=" form-control" asp-for="@Model.ZamowienieID" id="ZamowienieID" type="hidden" />
+            <input class="form-control" placeholder="Nazwa" asp-for="Nazwa" />
+            <span class="text-danger" asp-validation-for="Nazwa"></span>
+        </div>
+        <div class="col-sm-5">
+            <input class="form-control" placeholder="Data Złożenia" asp-for="DataZlozenia" />
+            <span class="text-danger" asp-validation-for="DataZlozenia"></span>
+        </div>
+        <button class="btn btn-primary col-sm-2" type="submit">Zmień</button>
+    </div>
+</form>
+

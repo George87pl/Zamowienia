@@ -1,0 +1,55 @@
+﻿@model ZamowenieTowaryView;
+@{
+    ViewData["Title"] = "Details";
+}
+
+    <div class="row">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">@Model.Zamowienie.Nazwa</h1>
+                <p>Data złożenia: @Model.Zamowienie.DataZlozenia</p>
+                @{
+                    if (Model.Zamowienie.DataZakonczenia != null)
+                    {
+                        <p>Data zakończenia: @Model.Zamowienie.DataZakonczenia</p>
+                    }
+                }
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Produkt</th>
+                    <th>Ilość</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var towary in Model.Towary)
+                {
+                    <tr>
+                        <td class="col-md-5">@towary.Nazwa</td>
+                        <td class="col-md-5">@towary.Ilosc</td>
+                        <td class="col-md-2"><a class="btn btn-danger" asp-controller="" asp-action="DeleteTowar" asp-route-id="@towary.TowaryID">X</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    
+    <form class="mt-3" enctype="multipart/form-data" asp-controller="Home" asp-action="Details" method="post">
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <input asp-for="@Model.Zamowienie.ZamowienieID" type="hidden" />
+                <input class="form-control" placeholder="Nazwa" asp-for="@Model.nowyTowar.Nazwa" />
+                <span class="text-danger" asp-validation-for="@Model.nowyTowar.Nazwa"></span>
+            </div>
+            <div class="col-sm-4">
+                <input type="number" class="form-control" placeholder="Ilosc" asp-for="@Model.nowyTowar.Ilosc" />
+                <span class="text-danger" asp-validation-for="@Model.nowyTowar.Nazwa"></span>
+            </div>
+            <button class="btn btn-primary col-sm-2" type="submit">Dodaj nowy towar</button>
+        </div>
+    </form>
+    
+
